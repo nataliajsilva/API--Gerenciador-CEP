@@ -1,0 +1,30 @@
+{
+  "name": "api-gerenciador-cep",
+  "version": "1.0.0",
+  "description": "Projeto API\u001b[D\u001b[D\u001b[D\u001b[D\u001b[C\u001b[C\u001b[C\u001b[C - Conclusão curso Back End Reprograma + Mercado Livre",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon ./server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nataliajsilva/API--Gerenciador-CEP.git"
+  },
+  "author": "Natalia de Jesus Silva",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/nataliajsilva/API--Gerenciador-CEP/issues"
+  },
+  "homepage": "https://github.com/nataliajsilva/API--Gerenciador-CEP#readme",
+  "dependencies": {
+    "apidoc": "^0.18.0",
+    "body-parse": "^0.1.0",
+    "express": "^4.17.1",
+    "mongoose": "^5.7.12",
+    "node-fetch": "^2.6.0"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.1"
+  }
+}
