@@ -1,16 +1,21 @@
 const mongoose = require('mongoose');
 
 const CEPsSchema = new mongoose.Schema({
-    
-    nome: { type: String },
-    email: {type: String, /*required: true*/},
-    cpf: {type: Number},
-    dataNascimento: { type: Date },
-    estadoCivil: { type: String},
-    telefone: {type: Number},
-    comprou: {type: Boolean},
-    cep: {type: String},
-    logradouro: {type: String}
+
+    cep: { type: String },
+    logradouro: { type: String },
+    bairro: { type: String },
+    cidade: { type: String },
+    estado: { type: String },
+    ocorrencias: [{
+        _id: false,
+        data: { type: String },
+        hora: { type: String },
+        segProduto: { type: String },
+        descricao: { type: String }
+    }],
+    qtdOcorrencias: { type: Number },
+    periculosidade: { type: String }
 }, {
     versionKey: false
 })

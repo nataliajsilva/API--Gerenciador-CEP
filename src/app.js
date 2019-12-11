@@ -3,7 +3,7 @@ const mongoose = require("mongoose")
 const  bodyParser  =  require ('body-parser')
 const app = express()
 
-mongoose.connect("mongodb://localhost:27017/cep", {useNewUrlParser: true,
+mongoose.connect("mongodb+srv://admin:admin123@cluster0-avlbk.mongodb.net/enderecamentoPostal", {useNewUrlParser: true,
 useUnifiedTopology: true});
 
 //representação da conexão com o banco de dados
@@ -19,7 +19,7 @@ db.once("open", function () {
 
 //rotas
 const index = require("./routes/index")
-const CEPs = require("./routes/CEPsRoute")
+const ceps = require("./routes/CEPsRoute")
 
 app.use(express.json());
 
@@ -37,6 +37,6 @@ app.use(express.static("public"));
 app.use(bodyParser.json());
 
 app.use("/", index)
-app.use("/CEPs", CEPs)
+app.use("/ceps", ceps)
 
 module.exports = app
