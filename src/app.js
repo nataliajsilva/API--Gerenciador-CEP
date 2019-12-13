@@ -25,6 +25,7 @@ db.once("open", function () {
 //rotas
 const index = require("./routes/index")
 const ceps = require("./routes/CEPsRoute")
+const usuarios = require('./routes/usuariosRoute')
 
 app.use(express.json());
 
@@ -38,18 +39,19 @@ app.use(function (req, res, next) {
   next()
 })
 
-app.use(express.static("public"));
-app.use(bodyParser.json());
+app.use("/", express.static('./src/public'));
+app.use("/api-doc", express.static('doc'));
 
-app.use("/", index)
-app.use("/ceps", ceps)
-
-
-app.use(express.static('doc'))
+//app.use(express.static("public"));
+//app.use(express.static('doc'))
 app.get('/apidoc', (req, res) => {
   res.sendFile(path.join(__dirname + '/../doc/index.html'));
 })
 
+app.use(bodyParser.json());
 
+app.use("/", index)
+app.use("/ceps", ceps)
+app.use('/usuarios', usuarios)
 
 module.exports = app

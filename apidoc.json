@@ -1,7 +1,7 @@
 {
     "name": "Gerenciador CEP",
     "version": "0.1.0",
-    "description": "apiDoc basic example",
-    "title": "Custom apiDoc browser title",
-    "url": "https://api.github.com/v1"
+    "description": " O Grenciador de CEP, permite incluir ocorrências em um local, determinando a periculosidade do mesmo",
+    "title": "Gerenciador CEP",
+    "url": "http://localhost:3000/"
 }

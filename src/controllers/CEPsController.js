@@ -1,7 +1,7 @@
 const CEPs = require('../model/CEPs');
 const fetch = require('node-fetch');
 
-
+//Cadastrar CEP
 exports.postCep = async function (req, res) {
     let enderecamento = new CEPs(req.body);
 
@@ -10,11 +10,10 @@ exports.postCep = async function (req, res) {
     enderecamento.cidade = await buscarCeps(enderecamento.cep).then(cidade => cidade.localidade)
     enderecamento.estado = await buscarCeps(enderecamento.cep).then(estado => estado.uf)
 
-    enderecamento.save(function (err) {
+    enderecamento.save(function (err,) {
         if (err) res.status(500).send(err);
         else {
             res.status(201).send({
-                status: true,
                 mensagem: "Cep incluído com sucesso"
             });
         }
@@ -31,6 +30,7 @@ const buscarCeps = (cep) => {
 
 }
 
+//Burcar todos os CEPs cadastrados
 exports.getCeps = (req, res) => {
     const filter = req.query
     CEPs.find(filter, function (err, enderecamento) {
@@ -42,6 +42,7 @@ exports.getCeps = (req, res) => {
     })
 }
 
+//Buscar por CEP
 exports.getCep = (req, res) => {
     const cep = req.params.cep
     CEPs.find(function (err, enderecamento) {
@@ -57,7 +58,7 @@ exports.getCep = (req, res) => {
     })
 }
 
-
+//Buscar CEPs cadastrados por cidade
 exports.getCidades = (req, res) => {
     const cidade = req.params.cidade
     CEPs.find({ cidade: cidade }, function (err, enderecamento) {
@@ -73,6 +74,7 @@ exports.getCidades = (req, res) => {
     })
 }
 
+//Função para adicionar campos: quantidade de ocorrência e periculosidade
 function dadosAdicionais(enderecamento) {
     return enderecamento.map(cep => {
         cep.qtdOcorrencias = cep.ocorrencias.length
@@ -88,6 +90,7 @@ function dadosAdicionais(enderecamento) {
 
 }
 
+//Cadastrar ocorrência em um CEP
 exports.postOcorrencias = (req, res) => {
     const cep = req.params.cep;
     CEPs.findOne({ cep: cep }, function (err, cep) {
@@ -95,7 +98,6 @@ exports.postOcorrencias = (req, res) => {
             res.status(404).send({ message: "CEP não localizado" })
             return
         }
-
         cep.ocorrencias.push(req.body);
         cep.save(function (err) {
             if (err) {
@@ -107,29 +109,28 @@ exports.postOcorrencias = (req, res) => {
     })
 }
 
+//Alterar propriedades ocorrência
 exports.updateOcorrencia = (req, res) => {
     const cep = req.params.cep;
     const OcorrenciaId = req.params.ocorrencia;
 
     const encontratCep = CEPs.findOne({ cep: cep }, function (err, cep) {
-
         if (err) {
             res.status(404).send({ message: "CEP não localizado" })
             return
         } else {
-       
-         let updateObj = { $set: {}};
-            for(var param in req.body) {
-            updateObj.$set['ocorrencias.$.'+ param] = req.body[param];
+            let updateObj = { $set: {} };
+            for (var param in req.body) {
+                updateObj.$set['ocorrencias.$.' + param] = req.body[param];
             }
 
             CEPs.update(
                 { 'ocorrencias._id': OcorrenciaId },
-                 updateObj,
+                updateObj,
                 { upsert: true },
                 function (err) {
                     if (err) return res.status(500).send({ message: err });
-                    res.status(204).send({ message: "Ocorrência atualizada com sucesso!" })
+                    res.status(200).send({ message: "Ocorrência atualizada com sucesso!" })
                 }
             )
         }
@@ -137,6 +138,7 @@ exports.updateOcorrencia = (req, res) => {
 
 }
 
+//Remover CEP
 exports.deleteCep = (req, res) => {
     let idCep = req.params.id;
 
@@ -146,7 +148,6 @@ exports.deleteCep = (req, res) => {
         if (!enderecamento) {
             return res.status(200).send({ message: "Infelizmente não localizamos o CEP" })
         }
-
         enderecamento.remove(function (err) {
             if (!err) {
                 res.status(200).send({ message: "CEP removido com sucesso" })
