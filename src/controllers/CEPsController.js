@@ -1,6 +1,7 @@
 const CEPs = require('../model/CEPs');
 const fetch = require('node-fetch');
 
+
 exports.postCep = async function (req, res) {
     let enderecamento = new CEPs(req.body);
 
@@ -32,23 +33,12 @@ const buscarCeps = (cep) => {
 
 exports.getCeps = (req, res) => {
     const filter = req.query
-    CEPs.find(filter, function (err, ceps) {
+    CEPs.find(filter, function (err, enderecamento) {
         if (err) res.status(500).send(err);
-        ceps.map(cep => {
-            cep.qtdOcorrencias = cep.ocorrencias.length
-        })
 
-        ceps.map(cep => {
-            if (cep.qtdOcorrencias <= 2) {
-                cep.periculosidade = "baixa"
-            } else if (cep.qtdOcorrencias > 2 && cep.qtdOcorrencias < 4) {
-                cep.periculosidade = "média"
-            } else {
-                cep.periculosidade = "alta"
-            }
-        })
+        dadosAdicionais(enderecamento)
 
-        res.status(200).send(ceps);
+        res.status(200).send(enderecamento);
     })
 }
 
@@ -60,47 +50,42 @@ exports.getCep = (req, res) => {
         if (!enderecamento) {
             return res.status(200).send({ message: 'Infelizmente CEP não localizado' });
         }
-        enderecamento.map(cep => {
-            cep.qtdOcorrencias = cep.ocorrencias.length
-        })
 
-        enderecamento.map(cep => {
-            if (cep.qtdOcorrencias <= 2) {
-                cep.periculosidade = "baixa"
-            } else if (cep.qtdOcorrencias > 2 && cep.qtdOcorrencias < 4) {
-                cep.periculosidade = "média"
-            } else {
-                cep.periculosidade = "alta"
-            }
-        })
+        dadosAdicionais(enderecamento)
+
         res.status(200).send(enderecamento.filter(enderecamento => enderecamento.cep == cep))
     })
 }
 
 
-exports.getCep = (req, res) => {
-    const cep = req.params.cep
-    CEPs.find(function (err, enderecamento) {
+exports.getCidades = (req, res) => {
+    const cidade = req.params.cidade
+    CEPs.find({ cidade: cidade }, function (err, enderecamento) {
         if (err) return res.status(500).send(err);
 
         if (!enderecamento) {
-            return res.status(200).send({ message: 'Infelizmente CEP não localizado' });
+            return res.status(200).send({ message: 'Infelizmente não localizamos a cidade' });
         }
-        enderecamento.map(cep => {
-            cep.qtdOcorrencias = cep.ocorrencias.length
-        })
 
-        enderecamento.map(cep => {
-            if (cep.qtdOcorrencias <= 2) {
-                cep.periculosidade = "baixa"
-            } else if (cep.qtdOcorrencias > 2 && cep.qtdOcorrencias < 4) {
-                cep.periculosidade = "média"
-            } else {
-                cep.periculosidade = "alta"
-            }
-        })
-        res.status(200).send(enderecamento.filter(enderecamento => enderecamento.cep == cep))
+        dadosAdicionais(enderecamento)
+
+        res.status(200).send(enderecamento)
     })
+}
+
+function dadosAdicionais(enderecamento) {
+    return enderecamento.map(cep => {
+        cep.qtdOcorrencias = cep.ocorrencias.length
+
+        if (cep.qtdOcorrencias <= 2) {
+            cep.periculosidade = "baixa"
+        } else if (cep.qtdOcorrencias > 2 && cep.qtdOcorrencias < 4) {
+            cep.periculosidade = "média"
+        } else {
+            cep.periculosidade = "alta"
+        }
+    })
+
 }
 
 exports.postOcorrencias = (req, res) => {
@@ -120,6 +105,36 @@ exports.postOcorrencias = (req, res) => {
             }
         })
     })
+}
+
+exports.updateOcorrencia = (req, res) => {
+    const cep = req.params.cep;
+    const OcorrenciaId = req.params.ocorrencia;
+
+    const encontratCep = CEPs.findOne({ cep: cep }, function (err, cep) {
+
+        if (err) {
+            res.status(404).send({ message: "CEP não localizado" })
+            return
+        } else {
+       
+         let updateObj = { $set: {}};
+            for(var param in req.body) {
+            updateObj.$set['ocorrencias.$.'+ param] = req.body[param];
+            }
+
+            CEPs.update(
+                { 'ocorrencias._id': OcorrenciaId },
+                 updateObj,
+                { upsert: true },
+                function (err) {
+                    if (err) return res.status(500).send({ message: err });
+                    res.status(204).send({ message: "Ocorrência atualizada com sucesso!" })
+                }
+            )
+        }
+    })
+
 }
 
 exports.deleteCep = (req, res) => {

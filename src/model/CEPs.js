@@ -8,7 +8,8 @@ const CEPsSchema = new mongoose.Schema({
     cidade: { type: String },
     estado: { type: String },
     ocorrencias: [{
-        _id: false,
+        //_id : false,
+        //id: {type: String},
         data: { type: String },
         hora: { type: String },
         segProduto: { type: String },
