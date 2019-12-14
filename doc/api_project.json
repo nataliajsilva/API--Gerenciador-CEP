@@ -1,7 +1,7 @@
 {
   "name": "Gerenciador CEP",
   "version": "0.1.0",
-  "description": " O Grenciador de CEP, permite incluir ocorrências em um local, determinando a periculosidade do mesmo",
+  "description": " O Grenciador de CEP, permite incluir ocorrências de roubo de carga em um local, determinando a periculosidade do mesmo",
   "title": "Gerenciador CEP",
   "url": "http://localhost:3000/",
   "sampleUrl": false,
@@ -9,7 +9,7 @@
   "apidoc": "0.3.0",
   "generator": {
     "name": "apidoc",
-    "time": "2019-12-13T19:27:12.693Z",
+    "time": "2019-12-14T20:47:29.508Z",
     "url": "http://apidocjs.com",
     "version": "0.19.0"
   }

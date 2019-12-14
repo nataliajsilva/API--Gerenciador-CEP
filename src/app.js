@@ -4,12 +4,8 @@ const bodyParser = require('body-parser')
 const app = express()
 const path = require("path");
 
-mongoose.connect("mongodb+srv://admin:admin123@cluster0-avlbk.mongodb.net/enderecamentoPostal", {
-
-//mongoose.connect("mongodb://localhost:27017/enderecamentoPostal", {
-  useNewUrlParser: true,
-  useUnifiedTopology: true
-});
+mongoose.connect("mongodb+srv://admin:admin123@cluster0-avlbk.mongodb.net/enderecamentoPostal", 
+{useNewUrlParser: true, useUnifiedTopology: true, useCreateIndex: true});
 
 //representação da conexão com o banco de dados
 let db = mongoose.connection;
@@ -29,7 +25,6 @@ const usuarios = require('./routes/usuariosRoute')
 
 app.use(express.json());
 
-
 app.use(function (req, res, next) {
   res.header("Access-Control-Allow-Origin", "*")
   res.header(
@@ -42,11 +37,9 @@ app.use(function (req, res, next) {
 app.use("/", express.static('./src/public'));
 app.use("/api-doc", express.static('doc'));
 
-//app.use(express.static("public"));
-//app.use(express.static('doc'))
-app.get('/apidoc', (req, res) => {
+app.get('/api-doc', (req, res) => {
   res.sendFile(path.join(__dirname + '/../doc/index.html'));
-})
+});
 
 app.use(bodyParser.json());
 

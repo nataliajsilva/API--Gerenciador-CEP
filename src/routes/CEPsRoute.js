@@ -6,7 +6,7 @@ const authMiddleware = require('../middleware/auth')
 
 router.post("/", controller.postCep)
 /**
- * @api {post} /ceps Cadastro de CEP
+ * @api {post} ceps Cadastro de CEP
  * @apiName postCep
  * @apiGroup Sistema
  *
@@ -16,9 +16,9 @@ router.post("/", controller.postCep)
  * 
  * @apiSuccessExample Success-Response:
  *     HTTP/1.1 200 OK
- *     {
-         "mensagem": "Cep incluído com sucesso"
-       }
+ *    {
+ *        "mensagem": "Cep incluído com sucesso"
+ *      }
  *
  * @apiError CEPNotFound CEP não encontrado.
  *
@@ -31,11 +31,9 @@ router.post("/", controller.postCep)
  
 router.get("/", controller.getCeps)
 /**
- * @api {get} /ceps Buscar CEPs cadastrados
+ * @api {get} ceps Buscar CEPs cadastrados
  * @apiName getCeps
  * @apiGroup Sistema
- *
- * @apiSuccess {String} firstname Firstname of the User.
  *
  * @apiSuccessExample Success-Response:
  *     HTTP/1.1 200 OK
@@ -62,49 +60,13 @@ router.get("/", controller.getCeps)
  *      "estado": "SP",
  *       "qtdOcorrencias": 2,
  *       "periculosidade": "baixa"
- *     },
- *     {
- *      "_id": "5deab57ebd936b1104011e65",
- *       "cep": "06280120",
- *       "ocorrencias": [
- *           {
- *              "data": "02/12/2019",
- *               "hora": "12:00",
- *               "segProduto": "bebidas",
- *               "descrição": " teste"
- *          },
- *           {
- *              "data": "01/12/2019",
- *               "hora": "12:00",
- *               "segProduto": "eletronico",
- *               "descrição": "teste"
- *          },
- *           {
- *              "data": "03/12/2019",
- *               "hora": "12:00",
- *              "segProduto": "eletronico",
- *               "descricao": "teste"
- *          },
- *           {
- *              "data": "20/11/2019",
- *               "hora": "09:00",
- *              "segProduto": "eletronico",
- *               "descricao": "teste 2"
- *          }
- *       ],
- *       "logradouro": "Rua Arara",
- *       "bairro": "Ayrosa",
- *       "cidade": "Osasco",
- *       "estado": "SP",
- *       "qtdOcorrencias": 4,
- *       "periculosidade": "alta"
- *      }    
+ *     }  
  * 
  */
 
 router.get("/:cep", controller.getCep)
 /**
- * @api {get} /ceps/:cep Buscar por CEP
+ * @api {get} ceps/:cep Buscar por CEP
  * @apiName getCep
  * @apiGroup Sistema
  *
@@ -149,7 +111,7 @@ router.get("/:cep", controller.getCep)
 
 router.get("/local/:cidade", controller.getCidades)
 /**
- * @api {get} /ceps/local/:cidade Buscar por cidade
+ * @api {get} ceps/local/:cidade Buscar por cidade
  * @apiName getCidades
  * @apiGroup Sistema
  *
@@ -159,7 +121,7 @@ router.get("/local/:cidade", controller.getCidades)
  *
  * @apiSuccessExample Success-Response:
  *     HTTP/1.1 200 OK
-  *     { 
+ *     { 
  *       "_id": "5dea90fd1939d51a342d350b",
  *       "cep": "04236094",
  *       "ocorrencias": [
@@ -187,15 +149,12 @@ router.get("/local/:cidade", controller.getCidades)
 
 router.post("/:cep", controller.postOcorrencias)
 /**
- * @api {post} /ceps/:cep Cadastro de ocorrências
+ * @api {post} ceps/:cep Cadastro de ocorrências
  * @apiName postOcorrencias
- * @apiGroup User
+ * @apiGroup Sistema
  *
  * @apiParam {Number} id Users unique ID.
- *
- * @apiSuccess {String} firstname Firstname of the User.
- * @apiSuccess {String} lastname  Lastname of the User.
- *
+ **
  * @apiSuccessExample Success-Response:
  *     HTTP/1.1 200 OK
  *     {
@@ -213,28 +172,10 @@ router.post("/:cep", controller.postOcorrencias)
  */
 
 router.use(authMiddleware)
-/**
- * @api {auth} / Autenticação de usuario
- * @apiName authMiddleware
- * @apiGroup User
- *
- * @apiParam {String} email Email do usuário.
- * @apiParam {String} senha Senha do usuário.
- *
- * @apiSuccess {String} Token Token da senha do usuário.
- *
- * @apiSuccessExample Success-Response:
- *     HTTP/1.1 200 OK
- *     {
- *        "user": {},
- *        "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE1NzYyNTE2NDQsImV4cCI6MTU3NjUxMDg0NH0.X1hjAtk_hyPnU8BKjw5gk90Z4Uy72xd166K6N8F583M"
- *     }
- *
- */
 
 router.put("/:cep/ocorrencias/:ocorrencia", controller.updateOcorrencia)
 /**
- * @api {put} /ceps/:cep/ocorrencias/:ocorrencia Alterar ocorrência
+ * @api {put} ceps/:cep/ocorrencias/:ocorrencia Alterar ocorrência
  * @apiName updateOcorrencia
  * @apiGroup Sistema
  *
@@ -260,12 +201,11 @@ router.put("/:cep/ocorrencias/:ocorrencia", controller.updateOcorrencia)
 
 router.delete("/:id", controller.deleteCep)
 /**
- * @api {delete} /ceps/:id Excluir CEP
+ * @api {delete} ceps/:id Excluir CEP
  * @apiName deleteCep
  * @apiGroup Sistema
  *
  * @apiParam {String} id Cadastro único do CEP.
- *
  *
  * @apiSuccessExample Success-Response:
  *     HTTP/1.1 200 OK
