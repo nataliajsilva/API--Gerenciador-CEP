@@ -147,9 +147,9 @@ router.get("/local/:cidade", controller.getCidades)
  * 
  */
 
-router.post("/:cep", controller.postOcorrencias)
+router.post("/registroOcorrencia/:cep", controller.postOcorrencias)
 /**
- * @api {post} ceps/:cep Cadastro de ocorrências
+ * @api {post} ceps/registroOcorrencia/:cep Cadastro de ocorrências
  * @apiName postOcorrencias
  * @apiGroup Sistema
  *
@@ -173,9 +173,9 @@ router.post("/:cep", controller.postOcorrencias)
 
 router.use(authMiddleware)
 
-router.put("/:cep/ocorrencias/:ocorrencia", controller.updateOcorrencia)
+router.put("/:cep/alterarOcorrencia/:ocorrencia", controller.updateOcorrencia)
 /**
- * @api {put} ceps/:cep/ocorrencias/:ocorrencia Alterar ocorrência
+ * @api {put} ceps/:cep/alterarOcorrencia/:ocorrencia Alterar ocorrência
  * @apiName updateOcorrencia
  * @apiGroup Sistema
  *
