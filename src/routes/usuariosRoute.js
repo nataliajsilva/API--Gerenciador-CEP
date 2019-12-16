@@ -12,7 +12,7 @@ router.post('/', controller.post)
 * @apiParam {String} Email Email do usuário.
 * @apiParam {String} Senha Senha do usuário.
 *
-* @apiSuccess {String} Usuário Cadastro do usuário.
+* @apiSuccess {String} Usuario Cadastro do usuário.
 * 
 * @apiSuccessExample Success-Response:
 *     HTTP/1.1 200 OK
@@ -44,7 +44,7 @@ router.post('/auth', controller.postAuth)
 *       "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE1NzYyNTE2NDQsImV4cCI6MTU3NjUxMDg0NH0.X1hjAtk_hyPnU8BKjw5gk90Z4Uy72xd166K6N8F583M"
 *     }
 *
-* @apiError UserNotFound Uusário não encontrado.
+* @apiError UserNotFound Usuário não encontrado.
 *
 * @apiErrorExample Error-Response:
 *     HTTP/1.1 404 Not Found

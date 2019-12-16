@@ -28,7 +28,7 @@ router.post("/", controller.postCep)
  *       "error": "CEPNotFound"
  *     }
  */
- 
+
 router.get("/", controller.getCeps)
 /**
  * @api {get} ceps Buscar CEPs cadastrados
@@ -117,7 +117,7 @@ router.get("/local/:cidade", controller.getCidades)
  *
  * @apiParam {String} Cidade Nome da cidade.
  *
- * @apiSuccess {String} CEP CEPs cadastrados com essa cidade.
+ * @apiSuccess {String} Cidade CEPs cadastrados com essa cidade.
  *
  * @apiSuccessExample Success-Response:
  *     HTTP/1.1 200 OK
@@ -153,21 +153,20 @@ router.post("/registroOcorrencia/:cep", controller.postOcorrencias)
  * @apiName postOcorrencias
  * @apiGroup Sistema
  *
- * @apiParam {Number} id Users unique ID.
+ * @apiParam {Number} CEP Endereçamento Postal único.
  **
  * @apiSuccessExample Success-Response:
  *     HTTP/1.1 200 OK
  *     {
- *       "firstname": "John",
- *       "lastname": "Doe"
+ *       "message": "Ocorrência incluida com sucesso"
  *     }
  *
- * @apiError CidadeNotFound Cidade não encontrada.
+ * @apiError CEPNotFound CEP não encontrada.
  *
  * @apiErrorExample Error-Response:
  *     HTTP/1.1 500 Not Found
  *     {
- *       "menssagem": "Infelizmente não localizamos a cidade"
+ *       "menssagem": "Infelizmente não localizamos o CEP"
  *     }
  */
 
@@ -180,9 +179,9 @@ router.put("/:cep/alterarOcorrencia/:ocorrencia", controller.updateOcorrencia)
  * @apiGroup Sistema
  *
  * @apiParam {String} CEP Endereçamento Postal único.
- * @apiParam {String} ID Ocorrência Cadastro único da ocorrência.
+ * @apiParam {String} IDocorrencia Cadastro único da ocorrência.
  *
- * @apiSuccess {String} firstname Firstname of the User.
+ * @apiSuccess {String} Ocorrencia Ocorrência do CEP.
  *
  * @apiSuccessExample Success-Response:
  *     HTTP/1.1 200 OK

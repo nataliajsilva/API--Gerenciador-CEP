@@ -58,8 +58,8 @@ define({ "api": [
             "group": "Success 200",
             "type": "String",
             "optional": false,
-            "field": "Usu",
-            "description": "<p>ário Cadastro do usuário.</p>"
+            "field": "Usuario",
+            "description": "<p>Cadastro do usuário.</p>"
           }
         ]
       },
@@ -128,7 +128,7 @@ define({ "api": [
             "group": "Error 4xx",
             "optional": false,
             "field": "UserNotFound",
-            "description": "<p>Uusário não encontrado.</p>"
+            "description": "<p>Usuário não encontrado.</p>"
           }
         ]
       },
@@ -302,7 +302,7 @@ define({ "api": [
             "group": "Success 200",
             "type": "String",
             "optional": false,
-            "field": "CEP",
+            "field": "Cidade",
             "description": "<p>CEPs cadastrados com essa cidade.</p>"
           }
         ]
@@ -383,7 +383,7 @@ define({ "api": [
   },
   {
     "type": "post",
-    "url": "ceps/:cep",
+    "url": "ceps/registroOcorrencia/:cep",
     "title": "Cadastro de ocorrências",
     "name": "postOcorrencias",
     "group": "Sistema",
@@ -394,8 +394,8 @@ define({ "api": [
             "group": "Parameter",
             "type": "Number",
             "optional": false,
-            "field": "id",
-            "description": "<p>Users unique ID. *</p>"
+            "field": "CEP",
+            "description": "<p>Endereçamento Postal único. *</p>"
           }
         ]
       }
@@ -404,7 +404,7 @@ define({ "api": [
       "examples": [
         {
           "title": "Success-Response:",
-          "content": "HTTP/1.1 200 OK\n{\n  \"firstname\": \"John\",\n  \"lastname\": \"Doe\"\n}",
+          "content": "HTTP/1.1 200 OK\n{\n  \"message\": \"Ocorrência incluida com sucesso\"\n}",
           "type": "json"
         }
       ]
@@ -415,15 +415,15 @@ define({ "api": [
           {
             "group": "Error 4xx",
             "optional": false,
-            "field": "CidadeNotFound",
-            "description": "<p>Cidade não encontrada.</p>"
+            "field": "CEPNotFound",
+            "description": "<p>CEP não encontrada.</p>"
           }
         ]
       },
       "examples": [
         {
           "title": "Error-Response:",
-          "content": "HTTP/1.1 500 Not Found\n{\n  \"menssagem\": \"Infelizmente não localizamos a cidade\"\n}",
+          "content": "HTTP/1.1 500 Not Found\n{\n  \"menssagem\": \"Infelizmente não localizamos o CEP\"\n}",
           "type": "json"
         }
       ]
@@ -434,7 +434,7 @@ define({ "api": [
   },
   {
     "type": "put",
-    "url": "ceps/:cep/ocorrencias/:ocorrencia",
+    "url": "ceps/:cep/alterarOcorrencia/:ocorrencia",
     "title": "Alterar ocorrência",
     "name": "updateOcorrencia",
     "group": "Sistema",
@@ -452,8 +452,8 @@ define({ "api": [
             "group": "Parameter",
             "type": "String",
             "optional": false,
-            "field": "ID",
-            "description": "<p>Ocorrência Cadastro único da ocorrência.</p>"
+            "field": "IDocorrencia",
+            "description": "<p>Cadastro único da ocorrência.</p>"
           }
         ]
       }
@@ -465,8 +465,8 @@ define({ "api": [
             "group": "Success 200",
             "type": "String",
             "optional": false,
-            "field": "firstname",
-            "description": "<p>Firstname of the User.</p>"
+            "field": "Ocorrencia",
+            "description": "<p>Ocorrência do CEP.</p>"
           }
         ]
       },
