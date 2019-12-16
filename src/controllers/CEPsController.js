@@ -10,7 +10,7 @@ exports.postCep = async function (req, res) {
     enderecamento.cidade = await buscarCeps(enderecamento.cep).then(cidade => cidade.localidade)
     enderecamento.estado = await buscarCeps(enderecamento.cep).then(estado => estado.uf)
 
-    enderecamento.save(function (err,) {
+    enderecamento.save(function (err, ) {
         if (err) res.status(500).send(err);
         else {
             res.status(201).send({

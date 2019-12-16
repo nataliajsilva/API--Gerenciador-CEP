@@ -57,7 +57,7 @@
 #### • Apidoc
 
 
-#### Agradeço pela oportunidade de participar desse curso com mulheres incríveis, em um lugar dos sonhos (Meli ♥) e de adquirir muitos conhecimentos e por me sentir integrada no mundo da tecnologia!
+#### Agradeço pela oportunidade de participar desse curso com mulheres incríveis, em um lugar dos sonhos (Meli ♥), de adquirir muitos conhecimentos e por me sentir integrada no mundo da tecnologia!
 
 
 ![minions agradecimento](https://github.com/nataliajsilva/API--Gerenciador-CEP/blob/master/gif%20minions.gif)
