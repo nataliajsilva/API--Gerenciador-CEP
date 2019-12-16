@@ -48,7 +48,7 @@
 
 #### POST /usuarios/auth Rota para gerar token de um determinado usuário. HTTP 201 CREATED
 
-### Tecnologias aplicadas
+## Tecnologias aplicadas
 
 #### • API REST
 #### • NodeJS
