@@ -4,6 +4,12 @@
 
 ## Cenário
 
+#### O cenário base do projeto foi o roubo de carga no Brasil. Onde existe muitos grupos criminoso especializados que visam roubar tanto cargas de grande porte, como entrega em container, quanto entrega de pequeno porte em vans para o e-commerce. 
+
+#### Segundo o site ecommercebrasil, em 2018 na região sudeste do país, foram registradas 89,79% de ocorrências. Sendo 39,39% em São Paulo e 41,39% no Rio de Janeiro.
+
+#### fonte: https://www.ecommercebrasil.com.br/noticias/relatorio-roubos-de-cargas/
+
 #### "O problema na segurança já fica aparente para o cliente de e-commerce. Grandes varejistas do setor já informam no ato da compra que não realizam a entrega, caso o cep informado pelo cliente conste nas listas de áreas de risco. Além disso, as empresas de logística aumentaram o valor do serviço de entrega para o Rio de Janeiro, fazendo com que o custo de frete seja mais caro para a região."
 
 #### fonte: https://exame.abril.com.br/negocios/dino aumento-de-areas-de-risco-geram-prejuizos-para-o-e-commerce-no-rio-de-janeiro/
